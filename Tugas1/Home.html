@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar-container">
+        <div class="logo">Nabiilah Nur Fauziyyah</div>
+        <nav class="nav-list">
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang Saya</a></li>
+                <li><a href="#hobi">Hobi</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Bagian Home -->
+    <section id="home" class="home-container">
+        <div class="home-content">
+            <div class="home-text">
+                <h1><span class="typing-effect">Halo, Saya Jia</span></h1> 
+                <p>2310631170105 | 4C - Informatika</p>
+                <a href="https://github.com/fauziyyah22" class="btn btn-primary">Proyek Saya</a>
+                <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
+            </div>
+            <div class="profile-img">
+                <img src="profil.jpeg" alt="Foto Nabiilah Nur Fauziyyah">
+            </div>
+        </div>
+    </section>
+     
+    <!-- Bagian Tentang Saya -->
+    <section id="about" class="about-biodata"> 
+        <div class="about">  
+            <h1>Tentang Saya</h1>
+            <p>Saya <strong>Nabiilah Nur Fauziyyah</strong>, mahasiswa semester 4 jurusan Informatika di Universitas Singaperbangsa Karawang. Saat ini, saya sedang mendalami pemrograman web dengan HTML, CSS, dan JavaScript.</p>
+            <a href="cvkerja.pdf" download class="btn btn-primary">Unduh CV</a>
+        </div>
+        <div class="biodata">
+            <img src="about.jpeg" alt="Foto Nabiilah Nur Fauziyyah">
+            <ul>
+                <li><strong>Nama:</strong> Nabiilah Nur Fauziyyah</li> 
+                <li><strong>Tempat Lahir:</strong> Bekasi</li>
+                <li><strong>Tanggal Lahir:</strong> 22 September 2005</li>
+                <li><strong>Agama:</strong> Islam</li>
+                <li><strong>Jenis Kelamin:</strong> Perempuan</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Bagian Hobi -->
+    <section id="hobi">
+        <h1>Hobi</h1>
+        <p>Kegiatan yang sering saya lakukan di waktu luang:</p>
+        <div class="hobi-container">
+            <div class="hobi-item" onclick="toggleDescription(this)">
+                <img src="hobi netflix.jpg" alt="Menonton Drakor">
+                <h3>Menonton Drakor</h3>
+                <p class="hobi-desc">Seru-seruan nonton drama Korea favorit!</p>
+            </div>
+            <div class="hobi-item" onclick="toggleDescription(this)">
+                <img src="hobi masak.jpg" alt="Memasak">
+                <h3>Memasak</h3>
+                <p class="hobi-desc">Coba-coba resep baru dan bikin makanan enak.</p>
+            </div>
+            <div class="hobi-item" onclick="toggleDescription(this)">
+                <img src="hobi makeup.jpeg" alt="Make Up">
+                <h3>Make Up</h3>
+                <p class="hobi-desc">Eksplorasi gaya make-up biar makin jago.</p>
+            </div>
+            <div class="hobi-item" onclick="toggleDescription(this)">
+                <img src="hobi langit.jpeg" alt="Memotret Langit">
+                <h3>Memotret Langit</h3>
+                <p class="hobi-desc">Menangkap keindahan langit dan momennya.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bagian Kontak -->
+    <section id="contact" class="container"> 
+        <h1>Kontak Saya</h1>
+        <p class="contact">
+            <a href="https://api.whatsapp.com/send/?phone=6285607339710">
+                <img src="https://img.icons8.com/?size=100&id=16712&format=png&color=000000" width="30px"> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/fz.nabil">
+                <img src="https://img.icons8.com/?size=100&id=32292&format=png&color=000000" width="30px"> Instagram
+            </a>
+            <a href="mailto:2310631170105@student.unsika.ac.id">
+                <img src="https://img.icons8.com/?size=100&id=rUgzXdXFnhmg&format=png&color=000000" width="30px"> Email
+            </a>
+            <a href="https://www.linkedin.com/in/nabiilah-fauziyyah">
+                <img src="https://img.icons8.com/?size=100&id=447&format=png&color=000000" width="30px"> LinkedIn
+            </a>
+            <a href="https://github.com/fauziyyah22">
+                <img src="https://img.icons8.com/?size=100&id=12598&format=png&color=000000" width="30px"> GitHub
+            </a>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Nabiilah Nur Fauziyyah</p>
+    </footer>
+</body>
+</html>
