@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Data Penjualan</title>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="container mx-auto flex flex-col gap-6">
+        <!-- Form Penjualan -->
+        <div class="bg-white shadow-md rounded-lg p-6 w-1/2">
+            <h2 class="text-xl font-bold text-center mb-4 text-gradient bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Form Penjualan</h2>
+            <form>
+                <!-- Input untuk nama produk -->
+                <div class="mb-4">
+                    <label class="block font-semibold">Produk</label>
+                    <input type="text" class="w-full border rounded p-2" required>
+                </div>
+                <!-- Input untuk jumlah produk -->
+                <div class="mb-4">
+                    <label class="block font-semibold">Jumlah</label>
+                    <input type="number" class="w-full border rounded p-2" required>
+                </div>
+                <!-- Input untuk harga produk -->
+                <div class="mb-4">
+                    <label class="block font-semibold">Harga</label>
+                    <input type="number" class="w-full border rounded p-2" required>
+                </div>
+                <!-- Tombol untuk menambahkan data -->
+                <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white p-2 rounded-lg font-semibold hover:bg-gradient-to-l hover:from-purple-500 hover:to-pink-500">Tambahkan</button>
+            </form>
+        </div>
+
+        <!-- Data Penjualan Bulanan -->
+        <div class="bg-white shadow-md rounded-lg p-6 w-1/2">
+            <h2 class="text-xl font-bold text-center mb-4 text-gradient bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Data Penjualan Bulanan</h2>
+            <table class="w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gradient-to-r from-pink-400 to-purple-400 text-white">
+                        <th class="border border-gray-300 p-2" rowspan="2">No</th>
+                        <th class="border border-gray-300 p-2" rowspan="2">Produk</th>
+                        <th class="border border-gray-300 p-2" colspan="2">Penjualan</th>
+                    </tr>
+                    <tr class="bg-gradient-to-r from-pink-400 to-purple-400 text-white">
+                        <th class="border border-gray-300 p-2">Jumlah</th>
+                        <th class="border border-gray-300 p-2">Harga Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Baris data penjualan -->
+                    <tr class="text-center bg-gradient-to-r from-purple-100 to-pink-100">
+                        <td class="border border-gray-300 p-2">1</td>
+                        <td class="border border-gray-300 p-2">Sepatu</td>
+                        <td class="border border-gray-300 p-2">50</td>
+                        <td class="border border-gray-300 p-2">Rp 25.000.000</td>
+                    </tr>
+                    <tr class="text-center bg-gradient-to-r from-purple-100 to-pink-100">
+                        <td class="border border-gray-300 p-2">2</td>
+                        <td class="border border-gray-300 p-2">Tas</td>
+                        <td class="border border-gray-300 p-2">30</td>
+                        <td class="border border-gray-300 p-2">Rp 15.000.000</td>
+                    </tr>
+                    <tr class="text-center bg-gradient-to-r from-purple-100 to-pink-100">
+                        <td class="border border-gray-300 p-2">3</td>
+                        <td class="border border-gray-300 p-2">Jam Tangan</td>
+                        <td class="border border-gray-300 p-2">20</td>
+                        <td class="border border-gray-300 p-2">Rp 10.000.000</td>
+                    </tr>
+                    <!-- Baris total penjualan -->
+                    <tr class="bg-gradient-to-r from-pink-400 to-purple-400 text-white font-bold text-center">
+                        <td class="border border-gray-300 p-2" colspan="2">Total Penjualan</td>
+                        <td class="border border-gray-300 p-2">100</td>
+                        <td class="border border-gray-300 p-2">Rp 50.000.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

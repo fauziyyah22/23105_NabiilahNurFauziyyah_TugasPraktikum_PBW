@@ -1,0 +1,23 @@
+{
+  "name": "pemrograman-web-aslab",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fauziyyah22/23105_NabiilahNurFauziyyah_TugasPraktikum_PBW.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fauziyyah22/23105_NabiilahNurFauziyyah_TugasPraktikum_PBW/issues"
+  },
+  "homepage": "https://github.com/fauziyyah22/23105_NabiilahNurFauziyyah_TugasPraktikum_PBW#readme",
+  "description": ""
+}
