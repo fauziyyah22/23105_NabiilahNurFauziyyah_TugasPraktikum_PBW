@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id"> <!-- Menentukan bahwa dokumen ini adalah HTML dan bahasa yang digunakan adalah Bahasa Indonesia -->
+<head>
+    <meta charset="UTF-8"> <!-- Menentukan karakter encoding untuk dokumen -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur viewport untuk responsivitas di perangkat mobile -->
+    <title>Portfolio</title> <!-- Judul halaman yang akan ditampilkan di tab browser -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Mengimpor Tailwind CSS dari CDN untuk styling -->
+</head>
+<body class="bg-gray-100"> <!-- Mengatur latar belakang halaman dengan warna abu-abu muda -->
+    <header class="bg-blue-500 text-white py-4"> <!-- Header dengan latar belakang biru dan teks putih -->
+        <nav class="container mx-auto flex justify-center space-x-6 text-lg font-semibold"> <!-- Navigasi dengan tata letak fleksibel -->
+            <a href="#about" class="hover:text-gray-300 transition duration-300">Tentang</a> <!-- Tautan ke bagian 'Tentang' -->
+            <a href="#projects" class="hover:text-gray-300 transition duration-300">Proyek</a> <!-- Tautan ke bagian 'Proyek' -->
+            <a href="#contact" class="hover:text-gray-300 transition duration-300">Kontak</a> <!-- Tautan ke bagian 'Kontak' -->
+        </nav>
+        <div class="text-center"> <!-- Mengatur teks di tengah -->
+            <h1 class="text-3xl font-bold">Portfolio Saya</h1> <!-- Judul utama -->
+            <p class="text-lg">Mahasiswa Informatika | Pengembang Web | UI/UX Enthusiast</p> <!-- Deskripsi singkat -->
+        </div>
+    </header>
+
+    <main class="container mx-auto text-center py-10"> <!-- Bagian utama dengan tata letak terpusat -->
+        <section id="about" class="mb-10"> <!-- Bagian 'Tentang' -->
+            <img src="profil.jpeg" alt="Nabiilah Nur Fauziyyah" class="w-32 h-40 mx-auto rounded-full border-4 border-gray-300"> <!-- Gambar profil dengan border -->
+            <h1 class="text-2xl font-bold mt-4">Tentang Saya</h1> <!-- Judul bagian 'Tentang' -->
+            <p class="mt-4 max-w-xl mx-auto">Saya <strong>Nabiilah Nur Fauziyyah</strong>, mahasiswa semester 4 jurusan Informatika di Universitas Singaperbangsa Karawang. Saat ini, saya sedang mendalami pemrograman web dengan HTML, CSS, dan JavaScript.</p> <!-- Deskripsi diri -->
+        </section>
+        
+        <section id="projects" class="mb-14"> <!-- Bagian 'Proyek' -->
+            <h2 class="text-3xl font-bold mb-6">Proyek</h2> <!-- Judul bagian 'Proyek' -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <!-- Grid untuk menampilkan proyek -->
+                <!-- Proyek 1: Aplikasi Data Penjualan -->
+                <a href="https://github.com/fauziyyah22/" target="_blank" class="block"> <!-- Tautan ke proyek 1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 cursor-pointer h-full flex flex-col"> <!-- Kartu proyek dengan efek hover -->
+                        <img src="proyek1.png" alt="Tabel Data Penjualan" class="w-full h-48 object-cover rounded-lg"> <!-- Gambar proyek 1 -->
+                        <div class="flex-grow text-left"> <!-- Konten teks proyek -->
+                            <h3 class="text-xl font-semibold mt-4">Tabel Data Penjualan</h3> <!-- Judul proyek 1 -->
+                            <p class="text-gray-600 mt-2"> <!-- Deskripsi proyek 1 -->
+                                Tabel berbasis web untuk mencatat dan menampilkan data penjualan bulanan. 
+                                Menggunakan HTML dan Tailwind CSS, tabel ini memungkinkan pengguna 
+                                untuk menambahkan, melihat, dan mengelola data penjualan dengan tampilan yang interaktif 
+                                dan mudah digunakan. Selain itu, sistem ini mendukung penghitungan otomatis total 
+                                penjualan serta tampilan tabel yang responsif.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+        
+                <!-- Proyek 2: Portfolio -->
+                <a href="https://github.com/fauziyyah22/" target="_blank" class="block"> <!-- Tautan ke proyek 2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 cursor-pointer h-full flex flex-col"> <!-- Kartu proyek dengan efek hover -->
+                        <img src="proyek2.png" alt="Portfolio" class="w-full h-48 object-cover rounded-lg"> <!-- Gambar proyek 2 -->
+                        <div class="flex-grow text-left"> <!-- Konten teks proyek -->
+                            <h3 class="text-xl font-semibold mt-4">Portfolio</h3> <!-- Judul proyek 2 -->
+                            <p class="text-gray-600 mt-2"> <!-- Deskripsi proyek 2 -->
+                                Website portfolio pribadi yang dibuat dengan HTML, CSS, dan Tailwind CSS. 
+                                Menampilkan informasi tentang diri saya, proyek-proyek yang telah dikerjakan, 
+                                serta cara menghubungi saya. Dengan desain yang responsif, website ini dapat 
+                                diakses dengan baik di berbagai perangkat, mulai dari desktop hingga smartphone.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <section id="contact" class="mb-10"> <!-- Bagian 'Kontak' -->
+            <h2 class="text-2xl font-bold mb-4">Kontak</h2> <!-- Judul bagian 'Kontak' -->
+            <p class="text-gray-600">Hubungi saya untuk bekerja sama!</p> <!-- Pesan ajakan untuk menghubungi -->
+            <a href="https://www.instagram.com/fz.nabil" target="_blank"> <!-- Tautan ke Instagram -->
+                <button class="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Hubungi Saya</button> <!-- Tombol untuk menghubungi -->
+            </a>
+        </section>
+    </main>
+    
+    <footer class="bg-blue-500 text-white text-center py-4"> <!-- Footer dengan latar belakang biru -->
+        <p>&copy; 2025 Nabiilah Nur Fauziyyah. Semua Hak Dilindungi.</p> <!-- Pesan hak cipta -->
+    </footer>
+</body>
+</html>
