@@ -1,0 +1,861 @@
+/* Import font Poppins dari Google Fonts untuk digunakan di website */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Mendefinisikan variabel warna dan properti lain yang akan digunakan di seluruh website */
+:root {
+    --primary-color: #3b82f6;     /* Warna biru utama */
+    --primary-light: #93c5fd;     /* Versi lebih terang dari warna utama */
+    --primary-dark: #1d4ed8;      /* Versi lebih gelap dari warna utama */
+    --gradient-blue: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);  /* Gradien biru untuk efek visual */
+    --gradient-sunset: linear-gradient(135deg, #f97316, #fb923c, #fdba74); /* Gradien oranye/sunset untuk variasi */
+    --secondary-color: #f0f9ff;   /* Warna sekunder/latar belakang */
+    --text-color: #333;           /* Warna teks utama */
+    --light-text: #666;           /* Warna teks yang lebih ringan */
+    --border-color: #ddd;         /* Warna untuk border elemen */
+    --danger-color: #ef4444;      /* Warna merah untuk peringatan/error */
+    --success-color: #10b981;     /* Warna hijau untuk sukses */
+    --warning-color: #f59e0b;     /* Warna oranye untuk peringatan */
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);            /* Bayangan standar untuk komponen */
+    --box-shadow-hover: 0 15px 35px rgba(59, 130, 246, 0.2); /* Bayangan saat hover */
+}
+
+/* Pengaturan dasar untuk seluruh halaman */
+body {
+    font-family: 'Poppins', sans-serif;  /* Menggunakan font Poppins */
+    line-height: 1.6;                    /* Jarak antar baris teks */
+    color: var(--text-color);            /* Warna teks menggunakan variabel */
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%); /* Gradien background */
+    min-height: 100vh;                   /* Tinggi minimum seluruh halaman */
+    padding-top: 80px;                   /* Padding atas untuk ruang header */
+    position: relative;                  /* Untuk posisi relatif */
+    overflow-x: hidden;                  /* Sembunyikan horizontal scrollbar */
+}
+
+/* Menambahkan pola latar belakang dengan SVG */
+body::before {
+    content: '';                         /* Konten kosong untuk pseudo-element */
+    position: fixed;                     /* Posisi tetap saat scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%233b82f6" opacity="0.05"/></svg>'); /* Pola titik-titik */
+    pointer-events: none;                /* Tidak menerima event mouse */
+    z-index: -1;                         /* Dibawah semua elemen */
+}
+
+/* Reset margin, padding dan box-sizing untuk semua elemen */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;              /* Ukuran elemen termasuk padding dan border */
+}
+
+/* Container untuk membatasi lebar konten */
+.container {
+    max-width: 1200px;                   /* Lebar maksimum konten */
+    margin: 0 auto;                      /* Posisi tengah horizontal */
+    padding: 0 15px;                     /* Padding kiri-kanan */
+    position: relative;                  /* Untuk penempatan element di dalamnya */
+    z-index: 1;                          /* Level penumpukan */
+}
+
+/* Animasi pesawat background */
+.airplane-animation {
+    position: fixed;                     /* Tetap di posisinya saat scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;                /* Tidak menerima event mouse */
+    z-index: 0;                          /* Level penumpukan */
+}
+
+/* Styling untuk elemen pesawat */
+.airplane {
+    position: absolute;                  /* Posisi absolute dalam container */
+    top: 100px;
+    left: -150px;
+    font-size: 40px;                     /* Ukuran ikon pesawat */
+    color: var(--primary-color);         /* Warna pesawat */
+    opacity: 0.7;                        /* Transparansi */
+    transform: rotate(-10deg);           /* Rotasi pesawat */
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2)); /* Bayangan */
+}
+
+/* Variasi rotasi untuk berbagai pesawat */
+.airplane-1 { transform: rotate(-5deg); }
+.airplane-2 { transform: rotate(-15deg); }
+.airplane-3 { transform: rotate(-8deg); }
+
+/* Animasi awan melayang */
+@keyframes cloudFloat {
+    0% { transform: translateX(0); }     /* Posisi awal */
+    100% { transform: translateX(20px); } /* Posisi akhir */
+}
+
+/* Styling awan */
+.cloud {
+    position: absolute;                  /* Posisi absolute */
+    font-size: 3rem;                     /* Ukuran ikon awan */
+    color: white;                        /* Warna awan */
+    opacity: 0.8;                        /* Transparansi */
+    animation: cloudFloat 10s ease-in-out infinite alternate; /* Animasi melayang */
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); /* Bayangan awan */
+}
+
+/* Header yang menempel di atas halaman */
+.sticky-header {
+    position: fixed;                     /* Tetap di posisi atas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95); /* Background transparan */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan header */
+    z-index: 1000;                       /* Level penumpukan tinggi */
+    padding: 10px 0;
+    transition: all 0.3s ease;           /* Transisi halus untuk perubahan */
+}
+
+/* Pengaturan padding untuk header */
+header {
+    padding: 10px 0;
+}
+
+/* Navigasi website */
+nav {
+    display: flex;                       /* Layout flexbox */
+    justify-content: space-between;      /* Ruang di antara item */
+    align-items: center;                 /* Rata tengah vertikal */
+    max-width: 1200px;                   /* Lebar maksimum */
+    margin: 0 auto;                      /* Posisi tengah horizontal */
+    padding: 0 15px;                     /* Padding kiri kanan */
+}
+
+/* Logo website */
+.logo {
+    display: flex;                       /* Layout flexbox */
+    align-items: center;                 /* Rata tengah vertikal */
+    gap: 10px;                           /* Jarak antar elemen */
+    color: var(--primary-dark);          /* Warna logo */
+}
+
+/* Ikon di dalam logo */
+.logo i {
+    font-size: 24px;                     /* Ukuran ikon */
+}
+
+/* Teks logo */
+.logo h1 {
+    font-size: 24px;                     /* Ukuran teks */
+    font-weight: 700;                    /* Ketebalan font */
+    margin: 0;                           /* Reset margin */
+}
+
+/* Daftar menu navigasi */
+nav ul {
+    display: flex;                       /* Layout flexbox */
+    list-style: none;                    /* Hapus bullet list */
+    gap: 20px;                           /* Jarak antar item */
+}
+
+/* Link menu navigasi */
+nav ul li a {
+    text-decoration: none;               /* Hapus garis bawah link */
+    color: var(--text-color);            /* Warna teks */
+    font-weight: 500;                    /* Ketebalan font */
+    padding: 8px 15px;                   /* Padding dalam */
+    border-radius: 30px;                 /* Bentuk bulat */
+    transition: all 0.3s ease;           /* Transisi halus */
+}
+
+/* Efek hover dan status aktif menu */
+nav ul li a:hover,
+nav ul li a.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); /* Gradien latar */
+    color: white;                        /* Warna teks putih */
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); /* Bayangan saat hover */
+}
+
+/* Section hero/banner */
+.hero {
+    position: relative;                  /* Untuk penempatan elemen di dalamnya */
+    padding: 50px 0;                     /* Padding atas bawah */
+    text-align: center;                  /* Teks rata tengah */
+    overflow: hidden;                    /* Sembunyikan konten yang keluar */
+    margin-bottom: 40px;                 /* Margin bawah */
+}
+
+/* Background gradien untuk hero section */
+.hero::before {
+    content: '';                         /* Konten kosong */
+    position: absolute;                  /* Posisi absolut */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.1), rgba(255, 255, 255, 0.7)); /* Gradien vertikal */
+    z-index: -1;                         /* Di belakang konten */
+}
+
+/* Konten dalam hero section */
+.hero-content {
+    max-width: 800px;                    /* Lebar maksimum */
+    margin: 0 auto;                      /* Rata tengah horizontal */
+    position: relative;                  /* Untuk positioning */
+}
+
+/* Judul hero section */
+.hero-content h2 {
+    font-size: 36px;                     /* Ukuran font */
+    margin-bottom: 15px;                 /* Margin bawah */
+    color: var(--primary-dark);          /* Warna teks */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan teks */
+}
+
+/* Paragraf dalam hero */
+.hero-content p {
+    font-size: 18px;                     /* Ukuran font */
+    margin-bottom: 15px;                 /* Margin bawah */
+    color: var(--light-text);            /* Warna teks */
+}
+
+/* Tagline/slogan dalam hero */
+.hero-content .tagline {
+    font-style: italic;                  /* Teks miring */
+    font-size: 16px;                     /* Ukuran font */
+    margin-bottom: 30px;                 /* Margin bawah */
+}
+
+/* Gambar dalam hero section */
+.hero-image {
+    max-width: 100%;                     /* Lebar maksimum */
+    height: auto;                        /* Tinggi menyesuaikan */
+    border-radius: 20px;                 /* Sudut bulat */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan */
+    margin-top: 20px;                    /* Margin atas */
+}
+
+/* Konten utama */
+.main-content {
+    margin-bottom: 30px;                 /* Margin bawah */
+}
+
+/* Grup form input */
+.form-group {
+    margin-bottom: 25px;                 /* Margin bawah */
+    position: relative;                  /* Untuk ikon di dalamnya */
+}
+
+/* Ikon dalam form */
+.form-group i {
+    position: absolute;                  /* Posisi absolut */
+    left: 15px;                          /* Jarak dari kiri */
+    top: 45px;                           /* Jarak dari atas */
+    color: var(--primary-color);         /* Warna ikon */
+}
+
+/* Input dan select dengan ikon */
+.form-group input, .form-group select {
+    padding-left: 40px;                  /* Padding kiri untuk ikon */
+}
+
+/* Container untuk form dan hasil */
+.form-container, .result-container {
+    background: white;                   /* Latar belakang putih */
+    padding: 30px;                       /* Padding dalam */
+    border-radius: 20px;                 /* Sudut bulat */
+    box-shadow: var(--box-shadow);       /* Bayangan */
+    margin-bottom: 30px;                 /* Margin bawah */
+    transition: all 0.3s ease;           /* Transisi halus */
+    position: relative;                  /* Untuk elemen dalam */
+    overflow: hidden;                    /* Sembunyikan konten yang keluar */
+}
+
+/* Garis biru di atas form */
+.form-container::before {
+    content: '';                         /* Konten kosong */
+    position: absolute;                  /* Posisi absolut */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;                         /* Tinggi garis */
+    background: var(--gradient-blue);    /* Gradien biru */
+}
+
+/* Efek hover untuk container */
+.form-container:hover, .result-container:hover {
+    box-shadow: var(--box-shadow-hover); /* Bayangan saat hover */
+    transform: translateY(-5px);         /* Gerakan sedikit ke atas */
+}
+
+/* Judul dalam container */
+.form-container h3, .result-container h3 {
+    color: var(--primary-dark);          /* Warna teks */
+    margin-bottom: 20px;                 /* Margin bawah */
+    text-align: center;                  /* Rata tengah */
+    font-size: 24px;                     /* Ukuran font */
+}
+
+/* Section hasil */
+.result-section {
+    margin-bottom: 50px;                 /* Margin bawah */
+}
+
+/* Label untuk input */
+label {
+    display: block;                      /* Tampil sebagai blok */
+    margin-bottom: 8px;                  /* Margin bawah */
+    font-weight: 500;                    /* Ketebalan font */
+    color: var(--text-color);            /* Warna teks */
+}
+
+/* Input dan select field */
+input, select {
+    width: 100%;                         /* Lebar penuh */
+    padding: 12px 15px;                  /* Padding dalam */
+    border: 1px solid var(--border-color); /* Border */
+    border-radius: 8px;                  /* Sudut bulat */
+    font-family: 'Poppins', sans-serif;  /* Font */
+    font-size: 14px;                     /* Ukuran font */
+    transition: all 0.3s ease;           /* Transisi halus */
+}
+
+/* Fokus pada input dan select */
+input:focus, select:focus {
+    outline: none;                       /* Hapus outline default */
+    border-color: var(--primary-color);  /* Warna border fokus */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Bayangan fokus */
+}
+
+/* Input tidak valid */
+input.invalid, select.invalid {
+    border-color: var(--danger-color);   /* Border merah untuk error */
+}
+
+/* Input valid */
+input.valid, select.valid {
+    border-color: var(--success-color);  /* Border hijau untuk valid */
+}
+
+/* Placeholder text */
+input::placeholder {
+    color: #aaa;                         /* Warna teks placeholder */
+}
+
+/* Grup tombol submit */
+.submit-group {
+    display: flex;                       /* Layout flexbox */
+    gap: 15px;                           /* Jarak antar tombol */
+    margin-top: 30px;                    /* Margin atas */
+}
+
+/* Styling tombol */
+button {
+    position: relative;                  /* Untuk efek ripple */
+    padding: 12px 20px;                  /* Padding dalam */
+    border: none;                        /* Hapus border */
+    border-radius: 8px;                  /* Sudut bulat */
+    font-family: 'Poppins', sans-serif;  /* Font */
+    font-weight: 500;                    /* Ketebalan font */
+    cursor: pointer;                     /* Kursor tangan */
+    transition: all 0.3s ease;           /* Transisi halus */
+    overflow: hidden;                    /* Untuk efek ripple */
+}
+
+/* Tombol submit */
+.btn-submit {
+    background: var(--gradient-blue);    /* Gradien biru */
+    color: white;                        /* Teks putih */
+    flex: 2;                             /* Proporsi lebar */
+    display: flex;                       /* Layout flexbox */
+    align-items: center;                 /* Rata tengah vertikal */
+    justify-content: center;             /* Rata tengah horizontal */
+    gap: 10px;                           /* Jarak antar elemen */
+}
+
+/* Efek ripple saat hover tombol submit */
+.btn-submit::before {
+    content: '';                         /* Konten kosong */
+    position: absolute;                  /* Posisi absolut */
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);   /* Warna efek */
+    border-radius: 50%;                  /* Bentuk lingkaran */
+    transform: translate(-50%, -50%);    /* Posisi tengah */
+    transition: width 0.6s, height 0.6s; /* Transisi dimensi */
+}
+
+/* Aktivasi efek ripple saat hover */
+.btn-submit:hover::before {
+    width: 300px;                        /* Lebar maksimal */
+    height: 300px;                       /* Tinggi maksimal */
+}
+
+/* Tombol reset */
+.btn-reset {
+    background: #f1f5f9;                 /* Warna latar */
+    color: var(--text-color);            /* Warna teks */
+    flex: 1;                             /* Proporsi lebar */
+    display: flex;                       /* Layout flexbox */
+    align-items: center;                 /* Rata tengah vertikal */
+    justify-content: center;             /* Rata tengah horizontal */
+    gap: 10px;                           /* Jarak antar elemen */
+}
+
+/* Efek hover tombol reset */
+.btn-reset:hover {
+    background: #e2e8f0;                 /* Warna latar saat hover */
+}
+
+/* Tombol print */
+.btn-print {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa); /* Gradien biru */
+    color: white;                        /* Teks putih */
+    padding: 8px 15px;                   /* Padding dalam */
+    font-size: 12px;                     /* Ukuran font */
+    border-radius: 5px;                  /* Sudut bulat */
+    display: flex;                       /* Layout flexbox */
+    align-items: center;                 /* Rata tengah vertikal */
+    justify-content: center;             /* Rata tengah horizontal */
+    gap: 5px;                            /* Jarak antar elemen */
+    transition: all 0.3s ease;           /* Transisi halus */
+}
+
+/* Efek hover tombol print */
+.btn-print:hover {
+    background: var(--primary-dark);     /* Warna latar saat hover */
+    transform: translateY(-2px);         /* Gerakan ke atas */
+}
+
+/* Tampilan ketika result kosong */
+.result-empty {
+    text-align: center;                  /* Teks rata tengah */
+    padding: 40px 0;                     /* Padding atas bawah */
+    color: var(--light-text);            /* Warna teks */
+}
+
+/* Ikon di result kosong */
+.result-empty i {
+    font-size: 40px;                     /* Ukuran ikon */
+    margin-bottom: 10px;                 /* Margin bawah */
+    color: var(--primary-light);         /* Warna ikon */
+}
+
+/* Container tabel hasil */
+.result-table {
+    overflow-x: auto;                    /* Scroll horizontal jika perlu */
+}
+
+/* Styling tabel */
+table {
+    width: 100%;                         /* Lebar penuh */
+    border-collapse: collapse;           /* Gabungkan border */
+    margin-top: 20px;                    /* Margin atas */
+    font-size: 14px;                     /* Ukuran font */
+    border-radius: 10px;                 /* Sudut bulat */
+    overflow: hidden;                    /* Sembunyikan overflow */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Bayangan */
+}
+
+/* Header tabel */
+th {
+    background: var(--gradient-blue);    /* Gradien biru */
+    color: white;                        /* Teks putih */
+    font-weight: 600;                    /* Ketebalan font */
+    padding: 15px 12px;                  /* Padding dalam */
+    text-align: left;                    /* Teks rata kiri */
+    position: sticky;                    /* Tetap saat scroll */
+    top: 0;                              /* Posisi atas */
+}
+
+/* Cell tabel */
+td {
+    padding: 15px 12px;                  /* Padding dalam */
+    border-bottom: 1px solid var(--border-color); /* Garis bawah */
+}
+
+/* Efek hover pada baris tabel */
+tr:hover {
+    background-color: rgba(59, 130, 246, 0.05); /* Warna latar saat hover */
+    transform: scale(1.01);              /* Sedikit membesar */
+    transition: all 0.3s ease;           /* Transisi halus */
+}
+
+/* Badge/label status */
+.badge {
+    display: inline-block;               /* Tampil sebagai inline-block */
+    padding: 3px 10px;                   /* Padding dalam */
+    border-radius: 50px;                 /* Bentuk bulat */
+    font-size: 12px;                     /* Ukuran font */
+    font-weight: 600;                    /* Ketebalan font */
+}
+
+/* Badge primary */
+.badge-primary {
+    background: var(--primary-light);    /* Warna latar */
+    color: var(--primary-dark);          /* Warna teks */
+}
+
+/* Badge sukses */
+.badge-success {
+    background: rgba(16, 185, 129, 0.2); /* Warna latar transparan */
+    color: var(--success-color);         /* Warna teks */
+}
+
+/* Kode tiket */
+.ticket-code {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); /* Gradien biru */
+    color: white;                        /* Teks putih */
+    padding: 4px 10px;                   /* Padding dalam */
+    border-radius: 50px;                 /* Bentuk bulat */
+    font-weight: 500;                    /* Ketebalan font */
+    font-size: 12px;                     /* Ukuran font */
+    display: inline-flex;                /* Layout inline-flex */
+    align-items: center;                 /* Rata tengah vertikal */
+    gap: 5px;                            /* Jarak antar elemen */
+    box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3); /* Bayangan */
+}
+
+/* Alert/Notifikasi */
+.alert {
+    padding: 15px;                       /* Padding dalam */
+    border-radius: 8px;                  /* Sudut bulat */
+    margin-bottom: 20px;                 /* Margin bawah */
+    animation-duration: 0.5s;            /* Durasi animasi */
+}
+
+/* Alert sukses */
+.alert-success {
+    background-color: #d1fae5;           /* Warna latar hijau muda */
+    color: var(--success-color);         /* Warna teks hijau */
+    border-left: 4px solid var(--success-color); /* Border kiri hijau */
+}
+
+/* Alert error */
+.alert-error {
+    background-color: #fee2e2;           /* Warna latar merah muda */
+    color: var(--danger-color);          /* Warna teks merah */
+    border-left: 4px solid var(--danger-color); /* Border kiri merah */
+}
+
+/* Alert peringatan */
+.alert-warning {
+    background-color: #fef3c7;           /* Warna latar kuning muda */
+    color: var(--warning-color);         /* Warna teks kuning */
+    border-left: 4px solid var(--warning-color); /* Border kiri kuning */
+}
+
+/* Modal pembayaran */
+.modal {
+    display: none;                       /* Tidak tampil default */
+    position: fixed;                     /* Posisi tetap */
+    z-index: 1000;                       /* Level penumpukan tinggi */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;                      /* Scroll jika perlu */
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang gelap transparan */
+    align-items: center;                 /* Rata tengah vertikal */
+    justify-content: center;             /* Rata tengah horizontal */
+}
+
+/* Konten modal */
+.modal-content {
+    background: white;                   /* Latar putih */
+    margin: 10% auto;                    /* Margin tengah */
+    padding: 30px;                       /* Padding dalam */
+    border-radius: 20px;                 /* Sudut bulat */
+    width: 90%;                          /* Lebar relatif */
+    max-width: 500px;                    /* Lebar maksimum */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Bayangan */
+    position: relative;                  /* Untuk tombol tutup */
+}
+
+/* Tombol tutup modal */
+.close {
+    position: absolute;                  /* Posisi absolut */
+    right: 25px;                         /* Jarak dari kanan */
+    top: 20px;                           /* Jarak dari atas */
+    font-size: 30px;                     /* Ukuran font */
+    font-weight: bold;                   /* Ketebalan font */
+    color: var(--light-text);            /* Warna teks */
+    cursor: pointer;                     /* Kursor tangan */
+}
+
+/* Efek hover tombol tutup */
+.close:hover {
+    color: var(--danger-color);          /* Warna merah saat hover */
+}
+
+/* Opsi pembayaran */
+.payment-options {
+    display: grid;                       /* Layout grid */
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom sama lebar */
+    gap: 20px;                           /* Jarak antar item */
+    margin: 30px 0;                      /* Margin atas bawah */
+}
+
+/* Item opsi pembayaran */
+.payment-option {
+    display: flex;                       /* Layout flexbox */
+    flex-direction: column;              /* Arah kolom */
+    align-items: center;                 /* Rata tengah horizontal */
+    justify-content: center;             /* Rata tengah vertikal */
+    padding: 20px;                       /* Padding dalam */
+    border: 2px solid var(--border-color); /* Border */
+    border-radius: 10px;                 /* Sudut bulat */
+    cursor: pointer;                     /* Kursor tangan */
+    transition: all 0.3s ease;           /* Transisi halus */
+}
+
+/* Ikon dalam opsi pembayaran */
+.payment-option i {
+    font-size: 24px;                     /* Ukuran ikon */
+    margin-bottom: 10px;                 /* Margin bawah */
+    color: var(--primary-color);         /* Warna ikon */
+}
+
+/* Opsi pembayaran aktif/terpilih */
+.payment-option.active {
+    border-color: var(--primary-color);  /* Border biru */
+    background-color: var(--secondary-color); /* Latar biru muda */
+}
+
+/* Container untuk efek confetti */
+.confetti-container {
+    position: fixed;                     /* Posisi tetap */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;                /* Tidak menerima event mouse */
+    z-index: 9999;                       /* Level penumpukan tinggi */
+}
+
+/* Elemen confetti */
+.confetti {
+    position: absolute;                  /* Posisi absolut */
+    top: -10px;                          /* Jarak dari atas */
+    width: 10px;                         /* Lebar */
+    height: 20px;                        /* Tinggi */
+    transform-origin: center;            /* Pusat transformasi */
+    animation: confettiFall 5s ease-in-out forwards; /* Animasi jatuh */
+}
+
+/* Animasi confetti jatuh */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg); /* Posisi awal */
+        opacity: 1;                            /* Tampak penuh */
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg); /* Jatuh ke bawah dan berputar */
+        opacity: 0;                                  /* Menghilang */
+    }
+}
+
+/* ====== BAGIAN FOOTER WEBSITE ====== */
+footer {
+    background: white; /* Memberi warna putih pada latar belakang footer */
+    padding: 40px 0 0; /* Memberi ruang 40px di atas dan 0px di sisi bawah */
+    border-radius: 20px 20px 0 0; /* Membuat sudut melengkung di bagian atas footer */
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05); /* Menambahkan bayangan halus dibawah footer */
+}
+
+.footer-content {
+    display: grid; /* Menggunakan tampilan grid untuk tata letak */
+    grid-template-columns: repeat(3, 1fr); /* Membagi menjadi 3 kolom dengan lebar yang sama */
+    gap: 30px; /* Memberi jarak antar kolom sebesar 30px */
+    padding: 0 30px; /* Memberi ruang 30px di kiri dan kanan */
+}
+
+/* Aturan untuk layar berukuran kecil (tablet dan hp) */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr; /* Mengubah tata letak menjadi 1 kolom saja saat layar kecil */
+    }
+}
+
+.footer-section h4 {
+    color: var(--primary-dark); /* Menggunakan warna yang ditentukan untuk judul bagian footer */
+    margin-bottom: 15px; /* Memberi jarak bawah 15px dari elemen berikutnya */
+    font-size: 18px; /* Mengatur ukuran font menjadi 18 piksel */
+}
+
+.footer-section p {
+    color: var(--light-text); /* Memakai warna teks ringan dari variabel */
+    font-size: 14px; /* Mengatur ukuran teks menjadi 14 piksel */
+    margin-bottom: 10px; /* Memberi jarak 10px dengan paragraf berikutnya */
+}
+
+.social-icons {
+    display: flex; /* Menampilkan ikon sosial media sejajar horizontal */
+    gap: 15px; /* Memberi jarak 15px antar ikon */
+}
+
+.social-icons a {
+    color: var(--primary-color); /* Menggunakan warna utama untuk ikon */
+    font-size: 20px; /* Ukuran ikon diatur menjadi 20 piksel */
+    transition: color 0.3s ease; /* Memberi efek perubahan warna selama 0,3 detik */
+}
+
+.social-icons a:hover {
+    color: var(--primary-dark); /* Mengubah warna ikon menjadi lebih gelap saat kursor di atasnya */
+}
+
+.footer-bottom {
+    text-align: center; /* Menengahkan teks di bagian bawah footer */
+    padding: 20px 0; /* Memberi ruang 20px di atas dan bawah */
+    margin-top: 30px; /* Memberi jarak 30px dari elemen di atasnya */
+    border-top: 1px solid var(--border-color); /* Menambah garis tipis di bagian atas */
+    font-size: 14px; /* Mengatur ukuran teks menjadi 14 piksel */
+    color: var(--light-text); /* Menggunakan warna teks ringan dari variabel */
+}
+
+/* ====== BAGIAN ANIMASI ====== */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Mulai dengan elemen tidak terlihat */
+        transform: translateY(20px); /* Posisi awal 20px dari bawah */
+    }
+    to {
+        opacity: 1; /* Akhiri dengan elemen sepenuhnya terlihat */
+        transform: translateY(0); /* Posisi akhir normal (tidak bergeser) */
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1; /* Mulai dengan elemen sepenuhnya terlihat */
+        transform: translateY(0); /* Posisi awal normal */
+    }
+    to {
+        opacity: 0; /* Akhiri dengan elemen tidak terlihat */
+        transform: translateY(-20px); /* Posisi akhir 20px ke atas */
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s ease forwards; /* Terapkan animasi muncul selama 0,5 detik */
+}
+
+.fadeOut {
+    animation: fadeOut 0.5s ease forwards; /* Terapkan animasi menghilang selama 0,5 detik */
+}
+
+/* ====== PENGATURAN RESPONSIF ====== */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 20px; /* Mengurangi padding container saat layar sedang */
+    }
+    
+    nav ul {
+        gap: 10px; /* Memperkecil jarak antar menu */
+    }
+    
+    nav ul li a {
+        padding: 8px 10px; /* Memperkecil padding tombol menu */
+    }
+    
+    .hero-content h2 {
+        font-size: 30px; /* Memperkecil ukuran judul utama */
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 140px; /* Menambah padding atas untuk header yang menempel */
+    }
+
+    nav {
+        flex-direction: column; /* Mengubah navigasi menjadi format kolom vertikal */
+        gap: 20px; /* Memberi jarak antar elemen navigasi */
+    }
+    
+    .hero-content h2 {
+        font-size: 26px; /* Memperkecil lagi ukuran judul utama */
+    }
+    
+    .submit-group {
+        flex-direction: column; /* Menyusun tombol submit secara vertikal */
+    }
+    
+    .payment-options {
+        grid-template-columns: 1fr; /* Mengubah pilihan pembayaran menjadi 1 kolom */
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 160px; /* Menambah padding atas untuk layar sangat kecil */
+    }
+
+    nav ul {
+        flex-wrap: wrap; /* Membuat menu navigasi bisa membalut ke baris berikutnya */
+        justify-content: center; /* Menengahkan menu navigasi */
+    }
+    
+    .hero-content h2 {
+        font-size: 22px; /* Memperkecil lagi ukuran judul untuk hp */
+    }
+    
+    .result-table {
+        overflow-x: auto; /* Membuat tabel bisa di-scroll horizontal jika terlalu lebar */
+    }
+}
+
+/* ====== PENGATURAN MODE GELAP ====== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #020617 100%); /* Latar belakang gradien gelap */
+        color: #f8fafc; /* Warna teks terang untuk mode gelap */
+    }
+    
+    .sticky-header {
+        background: rgba(15, 23, 42, 0.95); /* Header transparan dengan warna gelap */
+    }
+    
+    .logo {
+        color: var(--primary-light); /* Warna logo menjadi lebih terang */
+    }
+    
+    nav ul li a {
+        color: #f8fafc; /* Menu navigasi menjadi warna terang */
+    }
+    
+    .form-container, .result-container, footer {
+        background: #1e293b; /* Latar kontainer menjadi warna biru gelap */
+        color: #f8fafc; /* Teks kontainer menjadi warna terang */
+    }
+    
+    input, select, .btn-reset {
+        background: #0f172a; /* Latar elemen form menjadi gelap */
+        color: #f8fafc; /* Teks form menjadi terang */
+        border-color: #334155; /* Warna border input dibuat lebih gelap */
+    }
+    
+    th {
+        background-color: #334155; /* Header tabel dengan warna slate gelap */
+        color: #f8fafc; /* Teks header tabel menjadi terang */
+    }
+    
+    td {
+        border-color: #334155; /* Warna garis sel tabel menjadi lebih gelap */
+    }
+    
+    .footer-section h4 {
+        color: var(--primary-light); /* Judul footer menjadi warna terang */
+    }
+    
+    .footer-section p, .footer-bottom p {
+        color: #94a3b8; /* Teks footer menjadi abu-abu terang */
+    }
+    
+    .footer-bottom {
+        border-color: #334155; /* Warna garis footer bawah menjadi lebih gelap */
+    }
+}
