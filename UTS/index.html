@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Roast - Kopi Kekinian untuk Kamu!</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Konfigurasi Tailwind untuk warna custom */
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #F4A460;
+            --dark-color: #333333;
+            --light-color: #F5F5DC;
+            --text-primary: #2C1810;
+            --text-secondary: #8B4513;
+            --background-primary: #FFFEF7;
+            --background-secondary: #F9F7F4;
+            --border-color: #E8E2D4;
+            --shadow: 0 4px 20px rgba(139, 69, 19, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Custom width untuk sidebar */
+        .w-70 {
+            width: 280px;
+        }
+        .-left-70 {
+            left: -280px;
+        }
+        
+        /* Active state untuk sidebar */
+        .sidebar.active {
+            left: 0;
+        }
+        
+        /* Hamburger button positioning ketika sidebar terbuka */
+        .sidebar.active ~ .sidebar-toggle {
+            left: 300px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar.active ~ .sidebar-toggle {
+                left: 2rem;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'coffee-primary': '#8B4513',
+                        'coffee-secondary': '#D2691E',
+                        'coffee-accent': '#F4A460',
+                        'coffee-dark': '#333333',
+                        'coffee-light': '#F5F5DC',
+                        'brown-200': '#D2B48C'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- SIDEBAR: Navigasi utama website dengan Tailwind -->
+    <div id="sidebar" class="fixed top-0 -left-70 w-70 h-screen z-50 transition-all duration-300 ease-in-out shadow-2xl sidebar"
+         style="background: linear-gradient(180deg, rgba(139, 69, 19, 0.6) 0%, rgba(51, 51, 51, 0.6) 100%), url('gambar/sidebar.png') center/cover no-repeat;">
+        <div class="p-8 h-full flex flex-col">
+            <!-- Logo Container -->
+            <div class="mb-8 mt-12">
+                <div class="flex items-center space-x-3 text-white">
+                    <i class="fas fa-coffee text-3xl text-coffee-accent animate-pulse"></i>
+                    <span class="text-2xl font-bold tracking-wide">Urban Roast</span>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="flex-1 flex flex-col space-y-2 sidebar-nav">
+                <a href="#home" class="nav-link active flex items-center space-x-4 px-4 py-3 rounded-lg text-white hover:bg-white/20 transition-all duration-300 group" data-section="home">
+                    <i class="fas fa-home text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="#menu" class="nav-link flex items-center space-x-4 px-4 py-3 rounded-lg text-white hover:bg-white/20 transition-all duration-300 group" data-section="menu">
+                    <i class="fas fa-mug-hot text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-medium">Menu Kopi</span>
+                </a>
+                <a href="#promo" class="nav-link flex items-center space-x-4 px-4 py-3 rounded-lg text-white hover:bg-white/20 transition-all duration-300 group" data-section="promo">
+                    <i class="fas fa-tags text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-medium">Promo</span>
+                </a>
+                <a href="#testimoni" class="nav-link flex items-center space-x-4 px-4 py-3 rounded-lg text-white hover:bg-white/20 transition-all duration-300 group" data-section="testimoni">
+                    <i class="fas fa-star text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-medium">Testimoni</span>
+                </a>
+                <a href="#kontak" class="nav-link flex items-center space-x-4 px-4 py-3 rounded-lg text-white hover:bg-white/20 transition-all duration-300 group" data-section="kontak">
+                    <i class="fas fa-phone text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-medium">Kontak</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- TOGGLE BUTTON: Untuk membuka/tutup sidebar di mobile dengan Tailwind -->
+    <button id="sidebarToggle" class="fixed top-8 left-8 z-50 bg-coffee-primary text-white border-none p-4 rounded-full cursor-pointer shadow-lg transition-all duration-300 hover:bg-coffee-secondary hover:scale-110 text-xl sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Overlay untuk sidebar ketika terbuka di mobile -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+
+    <!-- MAIN CONTENT: Konten utama website -->
+    <main class="main-content">
+        <!-- HERO SECTION: Bagian utama pertama yang dilihat pengguna -->
+        <section id="home" class="hero-section">
+            <div class="hero-background">
+                <div class="coffee-beans"></div>
+                <div class="steam-animation"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 animate-fadeIn">Urban Roast</h1>
+                    <h2 class="text-2xl md:text-3xl text-brown-200 mb-6 animate-fadeIn delay-100">Kopi Kekinian untuk Kamu!</h2>
+                    <p class="hero-description">
+                        Nikmati berbagai varian kopi premium dengan cita rasa terbaik yang dipanggang dengan penuh cinta untuk pengalaman kopi yang tak terlupakan.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="cta-button primary" onclick="scrollToSection('kontak')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Pesan Sekarang
+                        </button>
+                        <button class="cta-button secondary" onclick="scrollToSection('menu')">
+                            <i class="fas fa-eye"></i>
+                            Lihat Menu
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="coffee-cup">
+                        <div class="cup-body">
+                            <div class="coffee-liquid"></div>
+                            <div class="foam"></div>
+                        </div>
+                        <div class="cup-handle"></div>
+                        <div class="steam"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- MENU SECTION: Daftar menu kopi -->
+        <section id="menu" class="menu-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Menu Kopi Pilihan</h2>
+                    <p class="section-subtitle">Dipanggang segar setiap hari dengan biji kopi premium</p>
+                </div>
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Grid menu akan diisi oleh JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMO SECTION: Daftar promo -->
+        <section id="promo" class="promo-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Promo Spesial</h2>
+                    <p class="section-subtitle">Jangan lewatkan penawaran terbaik kami</p>
+                </div>
+                <div class="promo-grid">
+                    <div class="promo-card main-promo">
+                        <div class="promo-badge">HOT DEAL</div>
+                        <div class="promo-content">
+                            <h3>Diskon 30%</h3>
+                            <p>Untuk pembelian pertama</p>
+                            <div class="promo-code">Kode: WELCOME30</div>
+                            <button class="promo-button" onclick="orderWhatsApp('Promo WELCOME30')">
+                                Ambil Promo
+                            </button>
+                        </div>
+                        <div class="promo-decoration">
+                            <i class="fas fa-percent"></i>
+                        </div>
+                    </div>
+                    <div class="promo-card">
+                        <div class="promo-content">
+                            <h3>Paket Bundling</h3>
+                            <p>Beli 2 gratis 1 untuk semua varian</p>
+                            <button class="promo-button" onclick="orderWhatsApp('Paket Bundling 2+1')">
+                                Order Sekarang
+                            </button>
+                        </div>
+                    </div>
+                    <div class="promo-card">
+                        <div class="promo-content">
+                            <h3>Weekend Special</h3>
+                            <p>Diskon 20% setiap akhir pekan</p>
+                            <button class="promo-button" onclick="orderWhatsApp('Weekend Special')">
+                                Dapatkan Promo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONI SECTION: Ulasan pelanggan -->
+        <section id="testimoni" class="testimoni-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Kata Mereka</h2>
+                    <p class="section-subtitle">Pengalaman pelanggan yang memuaskan</p>
+                </div>
+                <div class="testimoni-slider" id="testimoniSlider">
+                    <!-- Ulasan akan diisi oleh JavaScript -->
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev" onclick="prevTestimoni()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next" onclick="nextTestimoni()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- KONTAK SECTION: Form pemesanan -->
+        <section id="kontak" class="kontak-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Hubungi Kami</h2>
+                    <p class="section-subtitle">Siap melayani pesanan Anda</p>
+                </div>
+                <div class="kontak-content">
+                    <div class="kontak-form">
+                        <form id="kontakForm">
+                            <div class="form-group">
+                                <label for="nama">Nama Lengkap</label>
+                                <input type="text" id="nama" name="nama" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nomor">Nomor WhatsApp</label>
+                                <input type="tel" id="nomor" name="nomor" placeholder="08xxxxxxxxxx" required>
+                                <div class="error" id="nomor-error">Nomor WhatsApp hanya boleh berisi angka</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pesanan">Pilih Pesanan</label>
+                                <div class="select-wrapper">
+                                <select id="pesanan" name="pesanan" required>
+                                    <option value="">-- Pilih Menu --</option>
+                                </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="jumlah">Jumlah</label>
+                                <input type="number" id="jumlah" name="jumlah" min="1" value="1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="catatan">Catatan Tambahan (Opsional)</label>
+                                <textarea id="catatan" name="catatan" rows="3" placeholder="Contoh: Gula sedikit, tanpa es, dll..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">
+                                <i class="fab fa-whatsapp"></i>
+                                Kirim via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                    <div class="kontak-info">
+                        <div class="info-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>WhatsApp</h3>
+                            <p>+62 851-7420-0556</p>
+                            <a href="https://wa.me/6285174200556" class="contact-link">
+                                Chat Sekarang
+                            </a>
+                        </div>
+                        <div class="info-card">
+                            <i class="fab fa-instagram"></i>
+                            <h3>Instagram</h3>
+                            <p>@urbanroast.id</p>
+                            <a href="https://www.instagram.com" class="contact-link">
+                                Follow Kami
+                            </a>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <h3>Lokasi</h3>
+                            <p>Jl. Kopi Aroma No. 123, Jakarta Selatan</p>
+                            <a href="https://maps.google.com" class="contact-link">
+                                Cari Kami
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER: Bagian footer website -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <i class="fas fa-coffee"></i>
+                            <span>Urban Roast</span>
+                        </div>
+                        <p>Kopi kekinian terbaik untuk gaya hidup urban Anda</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+                            <a href="https://web.facebook.com"><i class="fab fa-facebook"></i></a>
+                            <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.tiktok.com"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Menu</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#menu">Menu Kopi</a></li>
+                            <li><a href="#promo">Promo</a></li>
+                            <li><a href="#testimoni">Testimoni</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Jam Operasional</h3>
+                        <ul class="operational-hours">
+                            <li>Senin - Jumat: 08:00 - 21:00</li>
+                            <li>Sabtu - Minggu: 09:00 - 22:00</li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Newsletter</h3>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Email Anda" required>
+                            <button type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        <p class="newsletter-note">Dapatkan promo eksklusif dengan berlangganan</p>
+                    </div>
+                </div>
+                <!-- Copyright -->
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Urban Roast. All rights reserved.</p>
+                    <p class="disclaimer">
+                        <small>Disclaimer: Website ini dibuat untuk keperluan tugas UTS. Produk dan layanan bersifat fiktif.</small>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- LOADING SCREEN: Tampilan saat loading -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-cup">
+                <div class="cup"></div>
+                <div class="steam"></div>
+            </div>
+            <h2>Urban Roast</h2>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
